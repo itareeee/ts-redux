@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "jsx": "react" ,
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "removeComments": true,
+        "sourceMap": false
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "files": [
+      "src/typings/tsd.d.ts",
+      "node_modules/typescript/lib/lib.es6.d.ts"
+    ]
+}
