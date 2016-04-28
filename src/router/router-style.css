@@ -1,0 +1,25 @@
+.routePaneBase {
+  position: absolute;
+  top: 0px;
+  width: 200px; 
+  height: 800px; 
+  overflow: scroll;
+}
+
+.firstPane {
+  composes: routePaneBase;
+  left: 0px;
+  background-color: orange;
+}
+
+.secondPane {
+  composes: routePaneBase;
+  left: 250px;
+  background-color: skyblue;
+}
+
+.thirdPane {
+  composes: routePaneBase;
+  left: 500px;
+  background-color: yellow;
+}

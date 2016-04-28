@@ -10,15 +10,15 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import { LoginApp } from '../common/LoginApp'
 import { routePane } from '../common/RouteLayout'
 
+var paneStyles = require('./router-style.css');
+
 
 // Add the reducer to your store on the `routing` key
 const store = createStore(
   combineReducers({
     routing: routerReducer
   })
-)
-
-const styleBase = {position: 'absolute', left: '250px', top: '0px', width: "200px", height: '800px', overflow: 'scroll'};
+);
 
 /*
  * First Pane
@@ -35,16 +35,6 @@ class App extends React.Component<{}, {}> {
   }
 }
 
-class FirstPane extends React.Component<{}, {}> {
-  render(){
-    return (
-      <div style={{position: 'absolute'}}>
-        <div style={Object.assign({}, styleBase, { left: '0px', backgroundColor: 'red' })}><App/></div>
-        {this.props.children}
-      </div>
-    );
-  }
-}
 
 /*
  * Second Pane
@@ -65,17 +55,6 @@ class Foo extends React.Component<{}, {}> {
   }
 }
 
-class SecondPane extends React.Component<{}, {}> {
-  render(){
-    return (
-      <div>
-        <div style={Object.assign({}, styleBase, { backgroundColor: 'blue' })}><Foo/></div>
-        {this.props.children}
-      </div>
-    );
-  }
-}
-
 
 /*
  * Third pane
@@ -83,16 +62,6 @@ class SecondPane extends React.Component<{}, {}> {
 class FooChild extends React.Component<{params: any}, {}> {
   render(){
     return (<b>FooID: {this.props.params.fooId}</b>)
-  }
-}
-
-class ThirdPane extends React.Component<{params: any}, {}> {
-  render(){
-    return (
-      <div>
-        <div style={Object.assign({}, styleBase, { left: '500px', backgroundColor: 'yellow' })}><FooChild params={this.props.params}/></div>
-      </div>
-    );
   }
 }
 
@@ -105,13 +74,13 @@ ReactDOM.render(
     <LoginApp>
       { /* Tell the Router to use our enhanced history */ }
       <Router history={history}>
-        <Route path="/" component={App}>
-          <Route path="foo" component={SecondPane}>
-            <Route path="/foo/:fooId" component={ThirdPane}/>
+        <Route path="/" component={routePane(App, 1)}>
+          <Route path="foo" component={routePane(Foo, 2)}>
+            <Route path="/foo/:fooId" component={routePane(FooChild, 3)}/>
           </Route>
         </Route>
       </Router>
     </LoginApp>
   </Provider>,
-  document.body
+  document.getElementById("react-app")
 )

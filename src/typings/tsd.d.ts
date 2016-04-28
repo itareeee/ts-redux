@@ -6,3 +6,5 @@
 /// <reference path="react-router/history.d.ts" />
 /// <reference path="react-router/react-router.d.ts" />
 /// <reference path="requirejs/require.d.ts" />
+/// <reference path="react/react-addons-css-transition-group.d.ts" />
+/// <reference path="react/react-addons-transition-group.d.ts" />
