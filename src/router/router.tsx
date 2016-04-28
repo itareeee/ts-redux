@@ -61,7 +61,21 @@ class Foo extends React.Component<{}, {}> {
  */
 class FooChild extends React.Component<{params: any}, {}> {
   render(){
-    return (<b>FooID: {this.props.params.fooId}</b>)
+    return (
+      <p>
+        <b>FooID: {this.props.params.fooId}</b><br/>
+        <b>FooID: {this.props.params.fooId}</b><br/>
+        <b>FooID: {this.props.params.fooId}</b><br/>
+        <b>FooID: {this.props.params.fooId}</b><br/>
+        <b>FooID: {this.props.params.fooId}</b><br/>
+        <b>FooID: {this.props.params.fooId}</b><br/>
+        <b>FooID: {this.props.params.fooId}</b><br/>
+        <b>FooID: {this.props.params.fooId}</b><br/>
+        <b>FooID: {this.props.params.fooId}</b><br/>
+        <b>FooID: {this.props.params.fooId}</b><br/>
+        <b>FooID: {this.props.params.fooId}</b><br/>
+      </p>
+    );
   }
 }
 
@@ -76,7 +90,7 @@ ReactDOM.render(
       <Router history={history}>
         <Route path="/" component={routePane(App, 1)}>
           <Route path="foo" component={routePane(Foo, 2)}>
-            <Route path="/foo/:fooId" component={routePane(FooChild, 3)}/>
+            <Route path="/foo/:fooId" component={routePane(FooChild, 3, 'wide')}/>
           </Route>
         </Route>
       </Router>

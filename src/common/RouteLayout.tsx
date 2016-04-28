@@ -15,47 +15,59 @@ export function routePane(
 ) {
   if (depthIdx < 1) throw new Error('Illegal Argument: depthIdx cannot be less than 1');
   if (depthIdx == 1 && leftFix == false) throw new Error('Illegal Argument: rightFix cannot be applied to first pane');
+  if (depthIdx != 1 && widthType == 'full') throw new Error('Illegal Argument: full-size pane can be applied only to the first pane');
   if (!['narrow', 'wide', 'full'].find(typ => typ == widthType)) throw new Error('Illegal Argument: wrong widthType');
 
   if (depthIdx > 3) throw new Error('Not Implemented: Only up to third panes are supported for now');
   if (!leftFix) throw new Error('Not Implemented: Only left fix style is supported for now');
 
-  const computeStyle = (): Object => {
-    const styleBase = { position: 'absolute', top: '0px', width: "200px", height: '800px' };
-
-    switch(depthIdx) {
-      case 1: return Object.assign({}, styleBase, { left: 0, backgroundColor: 'orange' });
-      case 2: return Object.assign({}, styleBase, { left: '250px', backgroundColor: 'skyblue' });
-      case 3: return Object.assign({}, styleBase, { left: '500px', backgroundColor: 'yellow' });
-      default: throw new Error(`Unexpected depthIdx: ${depthIdx}`)
+  function computeStyles(): Array<Object> {
+    let width: number = null;
+    switch (widthType) {
+      case 'narrow':
+        width = 300;
+        break;
+      case 'wide':
+        width = 850;
+        break;
     }
-  };
+
+    const mine = {
+      height: '100%',
+      border: 'medium solid #111111', boxSizing: 'border-box', backgroundColor: '#E6E6E6'
+    };
+
+    const child = { position: 'absolute', left: width, top: 0, bottom: 0 };
+
+    return [
+      Object.assign({}, mine, { width: width }),
+      Object.assign({}, child, { left: width })
+    ]
+  }
+
+  const [myStyle, childStyle] = computeStyles();
+
 
   return React.createClass({
     displayName: 'RoutePane',
     render: function () {
 
-
-      const panePart = React.createElement(
-        'div',
-        {style: computeStyle()},
-        React.createElement(component, this.props) //TODO: clone? ...this.props?
-      );
-
       const { children } = this.props;
       const childKey = children ? JSON.stringify(children.props.routeParams) : '__childKey';
 
-      const childrenPart = (
-          <CSSTransitionGroup transitionName={routePaneStyles}
-                              transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-            <div key={childKey}>{this.props.children}</div>
-          </CSSTransitionGroup>
-      );
-
       return (
-        <div style={ {position: 'absolute'} } >
-          {panePart}
-          {childrenPart}
+        <div style={{ height: '100%'}}>
+          {/* My Pane Area */}
+          <div style={myStyle}>
+            {React.createElement(component, this.props)}
+          </div>
+
+          {/* Child Area */}
+          <CSSTransitionGroup component="div" transitionName={routePaneStyles} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+            <div key={childKey} style={childStyle}>
+              {this.props.children} {/* Child <Route> Comes Here */}
+            </div>
+          </CSSTransitionGroup>
         </div>
       )
     }

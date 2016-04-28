@@ -10,10 +10,10 @@ var commonLayout = require('./common-layout.css');
 export class LoginApp extends React.Component<{}, {}> {
   render() { 
     return (
-      <div className={commonLayout.loginWrapper}>
+      <div>
         <LoginAppHeader/>
         <LoginAppSideNav/>
-        <main>{this.props.children}</main>
+        <main className={commonLayout.loginMain}>{this.props.children}</main>
       </div> 
     );
   }

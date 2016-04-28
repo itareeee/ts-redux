@@ -16,13 +16,6 @@
 }
 
 /* Login Layouts */
-.loginWrapper {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-}
-
-
 .loginHeader {
   composes: header cf;
   left: 50px;
@@ -41,4 +34,13 @@
   -webkit-transition: 450ms cubic-bezier(0.19, 1, 0.22, 1); /* TODO(kitaly): Auto-Prefixer */
   transition: 450ms cubic-bezier(0.19, 1, 0.22, 1);
   background-color: #173352;
+}
+
+.loginMain {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  right: 0;
+  bottom: 0;
+  background-color: lightgoldenrodyellow;
 }
