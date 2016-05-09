@@ -10,8 +10,6 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import { LoginApp } from '../common/LoginApp'
 import { routePane } from '../common/RouteLayout'
 
-var paneStyles = require('./router-style.css');
-
 
 // Add the reducer to your store on the `routing` key
 const store = createStore(
@@ -49,6 +47,7 @@ class Foo extends React.Component<{}, {}> {
           <Link to="foo/2">Foo2</Link><br/>
           <Link to="foo/3">Foo3</Link><br/>
           <Link to="foo/4">Foo4</Link><br/>
+          <Link to="foo/5">Foo5</Link><br/>
         </p>
       </div>
     );
@@ -81,7 +80,7 @@ class FooChild extends React.Component<{params: any}, {}> {
 
 
 // Create an enhanced history that syncs navigation events with the store
-const history = syncHistoryWithStore(hashHistory, store)
+const history = syncHistoryWithStore(hashHistory, store);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -97,4 +96,4 @@ ReactDOM.render(
     </LoginApp>
   </Provider>,
   document.getElementById("react-app")
-)
+);

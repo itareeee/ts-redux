@@ -47,9 +47,15 @@ export function routePane(
 
   const [myStyle, childStyle] = computeStyles();
 
-
+  // TODO: use createElement to intercept with PaneRoute
+  // TODO: use this.context.router to calc Position of its own pane
   return React.createClass({
     displayName: 'RoutePane',
+
+    contextTypes: {
+      router: React.PropTypes.object.isRequired
+    },
+
     render: function () {
 
       const { children } = this.props;
