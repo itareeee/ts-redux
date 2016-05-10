@@ -34,6 +34,9 @@
     },
     "react/react-addons-transition-group.d.ts": {
       "commit": "08ed4e9f1869e37e29514d862e0158b40e550232"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "6d0e826824da52204c1c93f92cecbc961ac84fa9"
     }
   }
 }
