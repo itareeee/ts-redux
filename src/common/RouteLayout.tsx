@@ -57,6 +57,8 @@ export function routePane(
 
 
   function adjustLeft(routePaneDiv: JQuery, routes: Array<any>){
+    routes.forEach(route => console.log(route.component.defaultProps.widthType)); //TODO(kitaly): calc total width
+
     const width = $win.width();
     if(width < 800 && depthIdx > 1) {
       routePaneDiv.css({left: -200});
@@ -88,7 +90,8 @@ export function routePane(
     componentDidMount() {
       //adjustLeft(this._div); //TODO: use onUpdate instead
       this._unlistenResize = $win.on('resize', () => {
-        adjustLeft($(this._div), this.props.routes);
+        const that: any = this;
+        adjustLeft($(this._div), that.props.routes);
       });
     },
 
@@ -103,6 +106,7 @@ export function routePane(
 
       return (
         <div style={{ position: 'absolute', height: '100%'}} ref={ div => this._div = div }>
+
 
           {/* My Pane Area */}
           <section style={myStyle}>
