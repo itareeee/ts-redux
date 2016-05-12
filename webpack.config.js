@@ -1,8 +1,6 @@
 module.exports = {
   entry: {
-    app: './src/app.tsx',
-    app2: './src/counter/counter.tsx',
-    app3: './src/router/router.tsx'
+    app: './src/app.tsx'
   },
   output: {
     path: 'dist',
